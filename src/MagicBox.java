@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class MagicBox<T> {
+public class MagicBox<T, N> {
     protected T[] items;
     protected T arrayNumber;
     protected int error;
@@ -22,22 +22,18 @@ public class MagicBox<T> {
 
 
     public T pick() {
-        try {
-            int x = 0;
-            for (x = 0; x < items.length; x++) {
-                if (items[x] == null) {
-                    error = items.length - x;
-                    throw new RuntimeException();
-                } else {
-                    Random random = new Random();
-                    int randomInt = random.nextInt(5); // джава подберёт случайное число от 0 до ЧИСЛО невключительно
-                    arrayNumber = items[randomInt];
-                    return arrayNumber;
-                }
+        int x = 0;
+        for (x = 0; x < items.length; x++) {
+            if (items[x] == null) {
+                error = items.length - x;
+                throw new RuntimeException("Коробка не заполнена. \n" +
+                        "Осталось еще: " + error);
+            } else {
+                Random random = new Random();
+                int randomInt = random.nextInt(5); // джава подберёт случайное число от 0 до ЧИСЛО невключительно
+                arrayNumber = items[randomInt];
+                return arrayNumber;
             }
-        } catch (RuntimeException exception) {
-            System.out.println("Коробка не заполнена. \n" +
-                    "Осталось еще: " + error);
         }
         return null;
     }

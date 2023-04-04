@@ -3,8 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        MagicBox<Number> magicBox = new MagicBox<>(5);
-        MagicBoxString<String> magicBoxString = new MagicBoxString(5);
+        MagicBox<Number, String> magicBox = new MagicBox<>(5);
         Scanner scanner = new Scanner(System.in);
         String text = "Выберите: \n" +
                 "1. Положить объект.\n" + "2. Достать рандомное число.";
@@ -22,14 +21,14 @@ public class Main {
                     switch (scanner.nextInt()) {
                         case 1:
                             System.out.println("Введите что нужно положить в коробку");
-                            if (magicBox.add(scanner.nextInt()) == true){
+                            if (magicBox.add(scanner.nextInt()) == true) {
                                 System.out.println("Вы положили число.");
                             } else {
                                 System.out.println("Коробка заполнена.");
                             }
                             break;
                         case 2:
-                            System.out.println(magicBox.pick());
+                            System.out.println("Из коробки выпало: " + magicBox.pick());
                             break;
                         default:
                             System.out.println(error);
@@ -41,14 +40,14 @@ public class Main {
                     switch (scanner.nextInt()) {
                         case 1:
                             System.out.println("Введите что нужно положить в коробку");
-                            if (magicBoxString.add(scanner.nextLine()) == true){
+                            if (magicBox.add(scanner.nextLong()) == true) {
                                 System.out.println("Вы положили число.");
                             } else {
                                 System.out.println("Коробка заполнена.");
                             }
                             break;
                         case 2:
-                            System.out.println(magicBoxString.pick());
+                            System.out.println("Из коробки выпало: " + magicBox.pick());
                             break;
                         default:
                             System.out.println(error);
